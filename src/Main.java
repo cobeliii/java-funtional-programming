@@ -1,19 +1,21 @@
+import com.cobeliii.EmailSender;
+
 public class Main {
     public static void main(String[] args) {
-        EmailSender sender = new Gmail();
-        sender.send();
+//        com.cobeliii.EmailSender sender = new com.cobeliii.Gmail();
+//        sender.send();
 
-        EmailSender emailSender = new EmailSender() {
-            @Override
-            public void send() {
-                System.out.println("Sending email in a different way");
-            }
+        EmailSender gmail = (from, to) -> {
+            //logic
+            //more logic
+            var isValidEmail = from.contains("@");
+            System.out.println("Sending email via com.cobeliii.Gmail...");
         };
 
-        emailSender.send();
+        gmail.send("abc@gmail.com", "abc@hotmail.com");
 
         //Using lambda now
-        EmailSender emailSender2 = () -> System.out.println("Sending email in a different way part 2");
-        emailSender2.send();
+        EmailSender hotmail = (from, to) -> System.out.println("Sending email via com.cobeliii.Hotmail...");
+        hotmail.send("abc@hotmail.com", "abc@gmail.com");
     }
 }
